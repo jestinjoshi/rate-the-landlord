@@ -33,7 +33,9 @@ const RemoveReviewModal = ({
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ id: selectedReview.id }),
+				body: JSON.stringify({
+					id: selectedReview.id,
+				}),
 			})
 				.then((result) => {
 					if (!result.ok) {
@@ -41,6 +43,11 @@ const RemoveReviewModal = ({
 					}
 				})
 				.then(() => {
+					fetch(
+						`/api/force-revalidate?path=${encodeURIComponent(
+							selectedReview.landlord,
+						)}`,
+					)
 					handleMutate()
 					setRemoveReviewOpen(false)
 					toast.success('Success!')
