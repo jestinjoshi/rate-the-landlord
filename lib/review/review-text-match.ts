@@ -87,7 +87,7 @@ export async function checkForLandlordSpam(landlord: string): Promise<boolean> {
 		recentEntries.length === 2 &&
 		recentEntries.every(
 			(review) =>
-				review.landlord.toUpperCase() === landlord.toLocaleUpperCase(),
+				review.landlord.toLocaleUpperCase() === landlord.toLocaleUpperCase(),
 		)
 	) {
 		return true
