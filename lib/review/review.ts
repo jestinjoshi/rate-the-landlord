@@ -420,7 +420,7 @@ export async function getLandlordSuggestions(
 	const suggestions = await sql`
     SELECT DISTINCT landlord FROM review WHERE landlord LIKE ${
 			'%' + landlord.toLocaleUpperCase() + '%'
-		}
+		} LIMIT 10
     `
 	return suggestions.map(({ landlord }) => landlord)
 }
